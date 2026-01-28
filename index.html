@@ -1,0 +1,635 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Como Funciona?</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+
+<style>
+:root {
+  --primary: #2563eb;
+  --primary-dark: #1e40af;
+  --bg: #f1f5f9;
+  --card: #ffffff;
+  --border: #e5e7eb;
+  --text: #0f172a;
+}
+
+body {
+  font-family: 'Inter', sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  padding: 30px;
+  line-height: 1.6;
+}
+
+h1 {
+  font-size: 32px;
+  margin-bottom: 24px;
+}
+
+.accordion {
+  margin-bottom: 14px;
+}
+
+.accordion-btn {
+  width: 100%;
+  background: var(--primary);
+  color: white;
+  border: none;
+  padding: 16px 20px;
+  font-size: 20px;
+  font-weight: 700;
+  cursor: pointer;
+  text-align: left;
+  border-radius: 8px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.accordion-btn:hover {
+  background: var(--primary-dark);
+}
+
+.accordion-btn span {
+  transition: transform 0.25s ease;
+}
+
+.accordion.active .accordion-btn span {
+  transform: rotate(90deg);
+}
+
+.accordion-content {
+  display: none;
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-top: none;
+  padding: 20px;
+  border-radius: 0 0 8px 8px;
+}
+
+h3 {
+  margin-top: 20px;
+}
+
+ul {
+  margin-left: 20px;
+}
+
+/* BARRA SUPERIOR */
+:root {
+  --cinza-barra: #1f1f1f; /* 👈 MUDE SÓ ISSO SE QUISER MAIS CLARO/ESCURO */
+  --verde-whatsapp: #08de56;
+}
+
+/* ===== TOPO ===== */
+.top-bar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  background: var(--cinza-barra);
+  padding: 15px 30px;
+  margin-bottom: 30px;
+  border-radius: 10px;
+}
+
+.top-bar img {
+  height: 45px;
+  max-width: 45%;
+  object-fit: contain;
+}
+
+
+/* ===== RODAPÉ / WHATSAPP ===== */
+.footer-bar {
+  background: var(--cinza-barra);
+  padding: 20px 30px;
+  margin-top: 60px;
+
+  display: flex;
+  justify-content: flex-end;
+  border-radius: 10px;
+}
+
+.whatsapp-btn {
+  background: var(--verde-whatsapp);
+  color: white;
+  text-decoration: none;
+
+  padding: 12px 18px;
+  border-radius: 6px;
+  font-weight: 600;
+
+  transition: opacity 0.2s ease;
+}
+
+.whatsapp-btn:hover {
+  opacity: 0.85;
+}
+
+@media (max-width: 600px) {
+  .top-bar {
+    padding: 12px 15px;
+  }
+
+  .top-bar img {
+    height: 35px;
+  }
+}
+
+
+
+</style>
+</head>
+
+<body>
+  
+  <div class="top-bar">
+  <img src="data:image/png;base64,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" alt="Logo Equatorial">
+  <img src="data:image/png;base64,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" alt="Logo Partner">
+</div>
+
+<h1>Como funciona?</h1>
+
+<h2>Assertividade de Elo</h2>
+<h3>Orientação sobre aplicação de Elos:</h3>
+<p>A equipe identifica visualmente qual elo deve ser usado no transformador (informação disponível no sistema OPER).</p>
+
+<p><b>Caso 1 – Ocorrência aderente</b></p>
+<ul>
+<li>Ocorrência nº 1025-01-2026</li>
+<li>Transformador com elo 6K</li>
+<li>Sistema OPER indica elo 6K</li>
+<li>Ação: aplicar elo 6K</li>
+<li>Resultado: Ocorrência ADERENTE (correto)</li>
+</ul>
+
+<p><b>Caso 2 – Ocorrência inaderente</b></p>
+<ul>
+<li>Ocorrência nº 1025-01-2026</li>
+<li>Transformador com elo 2H</li>
+<li>Sistema OPER indica elo 2H</li>
+<li>Ação: equipe aplica elo 6K</li>
+<li>Resultado: Ocorrência INADERENTE (incorreto)</li>
+</ul>
+
+<p><b>Exceção - ERRO DE CADASTRO</b></p>
+<p>Se o sistema OPER mostra um elo diferente do que existe no transformador:<br>
+• Pode ser erro de cadastro<br>
+• Ação obrigatória: comunicar imediatamente o supervisor e informar o erro na base de dados da EQTL.</p>
+
+<h3>Qual a orientação à equipe?</h3>
+<p>1º Em caso de dúvidas, sempre procure o supervisor.<br>
+2º Se atentar ao elo lançado no sistema.<br>
+3º Evidenciar sempre antes e depois da exceção.</p>
+
+<h3>Quais os principais erros?</h3>
+<p>- Falta de atenção antes de iniciar a execução do serviço<br>
+- Falta de comunicação com o supervisor diante de um problema ou dúvida.</p>
+
+<h3>Equipe errou?</h3>
+<p><b>TRATATIVA será criada.</b><br>
+O supervisor responsável deve aplicar PUNIÇÃO conforme o GRAU DE REINCIDÊNCIA do indicador.</p>
+
+<h3>🚨 PONTO DE ATENÇÃO</h3>
+<p>Em todas as oportunidades de contato ou reciclagem das equipes, falar sobre a importância de: <br>
+1 - Qualidade das imagens; <br>
+2 - Campo de observação preenchido; <br>
+3 - Materiais utilizados e quantidades; <br>
+4 - Sincronização sempre que possível.
+</p>
+
+
+<h2>Aderência a Quantidade de ELO</h2>
+<h3>Orientação sobre a Quantidade de Elos Aplicados:</h3>
+<p>A equipe aplica a quantidade correta de Elos para cada equipamento em operação (informação disponível no sistema OPER).</p>
+
+<p><b>Caso 1 – Ocorrência aderente</b></p>
+<ul>
+<li>Ocorrência nº 1025-01-2026</li>
+<li>Equipamento operado: Transformador Trifásico</li>
+<li>Sistema OPER sugere aplicação de <b>3 elos</b></li>
+<li>Ação: equipe aplica <b>3 elos</b></li>
+<li>Resultado: Ocorrência ADERENTE (correto)</li>
+</ul>
+
+<p><b>Caso 2 – Ocorrência inaderente</b></p>
+<ul>
+<li>Ocorrência nº 1025-01-2026</li>
+<li>Equipamento operado: Transformador Trifásico</li>
+<li>Sistema OPER sugere aplicação de <b>3 elos</b></li>
+<li>Ação: equipe aplica <b>1 elo</b></li>
+<li>Resultado: Ocorrência INADERENTE (incorreto)</li>
+</ul>
+
+<p><b>Exceção - ERRO DE CADASTRO</b></p>
+<p>Se o sistema OPER mostra uma quantidade de elo diferente da que existe no transformador:<br>
+• Pode ser erro de cadastro<br>
+• Ação obrigatória: comunicar imediatamente o supervisor e informar o erro na base de dados da EQTL.</p>
+
+<h3>Qual a orientação à equipe?</h3>
+<p>1º Em caso de dúvidas, sempre procure o supervisor.<br>
+2º Se atentar à quantidade de elos lançados no sistema.<br>
+3º Evidenciar sempre antes e depois da exceção.</p>
+
+<h3>Equipe errou?</h3>
+<p><b>TRATATIVA será criada.</b><br>
+O supervisor responsável deve aplicar PUNIÇÃO conforme o GRAU DE REINCIDÊNCIA do indicador.</p>
+
+<h2>Aderência Escala</h2>
+
+<h3>Orientação sobre a Aderência de Escala:</h3>
+
+<p>A equipe deve seguir com precisão o cronograma de turnos designado para ela.</p>
+
+<p><b>Caso 1 – Escala aderente</b></p>
+<ul>
+    <li>Equipe designada para o turno das 8h do dia 20/01/2026</li>
+  <li>Ação: Equipe chega às 8h, bate o ponto, e começa as atividades diárias referentes a sua função.</li>
+  <li>Resultado: Esala ADERENTE (correto)</li>
+</ul>
+
+<p><b>Caso 2 – Escala Inaderente por atraso</b></p>
+<ul>
+    <li>Equipe designada para o turno das 8h do dia 20/01/2026</li>
+  <li>Ação: Equipe chega às 9h, bate o ponto, e começa <b>COM ATRASO</b> as atividades diárias referentes a sua função.</li>
+  <li>Resultado: Escala INADERENTE (incorreto)</li>
+</ul>
+
+<p><b>Caso 3 – Escala Inaderente por antecipação</b></p>
+<ul>
+    <li>Equipe designada para o turno das 8h do dia 20/01/2026</li>
+  <li>Ação: Equipe chega às 7h, bate o ponto, e começa <b>ANTECIPADAMENTE</b> as atividades diárias referentes a sua função.</li>
+  <li>Resultado: Escala INADERENTE (incorreto)</li>
+</ul>
+
+<p><b>EXCEÇÃO - NÃO EXISTE.</b> <br> 
+    A equipe deve abrir o turno dentro do horário indicado, 
+    com tolerância de no máximo <b>15 MINUTOS</b>, 
+    antes ou depois do horário.
+</p>
+
+<h3>Qual a orientação à equipe?</h3>
+<p>
+1º Em caso de dúvidas, sempre procure o supervisor.<br>
+2º Se atentar ao CRONOGRAMA passado pela Gerência.<br>
+3º Pontualidade.
+</p>
+
+<h3>Equipe errou?</h3>
+<p>
+<b>TRATATIVA será criada.</b><br>
+O supervisor responsável deve aplicar PUNIÇÃO conforme o GRAU DE REINCIDÊNCIA do indicador.
+</p>
+
+<h3>🚨 PONTO DE ATENÇÃO</h3>
+<p>Em todas as oportunidades de contato ou reciclagem das equipes, falar sobre a importância de: <br>
+1 - Qualidade das imagens; <br>
+2 - Campo de observação preenchido; <br>
+3 - Materiais utilizados e quantidades; <br>
+4 - Sincronização sempre que possível.
+</p>
+
+<h2>Aderência Volume</h2>
+
+<h3>Orientação sobre a Aderência de Volume:</h3>
+
+<p>A equipe deve seguir com precisão o cronograma de turnos designado para ela.</p>
+
+<p><b>Caso 1 – Volume aderente</b></p>
+<ul>
+    <li>Equipe designada para o turno das 8h do dia 20/01/2026</li>
+  <li>Ação: Equipe chega às 8h, bate o ponto, e começa as atividades diárias referentes a sua função.</li>
+  <li>Resultado: Abriu o turno, Volume ADERENTE (correto)</li>
+</ul>
+
+<p><b>Caso 2 – Volume inaderente</b></p>
+<ul>
+    <li>Equipe designada para o turno das 8h do dia 20/01/2026</li>
+  <li>Ação: Equipe chega às 8h, <b>NÃO</b> bate o ponto, e começa as atividades diárias referentes a sua função.</li>
+  <li>Resultado: <b>Não abriu o turno</b>, Volume INADERENTE (incorreto)</li>
+</ul>
+
+<p><b>Caso 3 – Volume inaderente</b></p>
+<ul>
+    <li>Equipe designada para o turno das 8h do dia 20/01/2026</li>
+  <li>Ação: Equipe chega às 8h, bate o ponto <b>DUAS VEZES</b>, e começa as atividades diárias referentes a sua função.</li>
+  <li>Resultado: <b>Reabriu o turno</b>, Volume INADERENTE (incorreto)</li>
+</ul>
+
+<p><b>EXCEÇÃO - NÃO EXISTE.</b> <br> 
+    A equipe deve abrir o turno dentro do horário indicado, 
+    com tolerância de no máximo <b>15 MINUTOS</b>, 
+    antes ou depois do horário.
+</p>
+
+<h3>Qual a orientação à equipe?</h3>
+<p>
+1º Em caso de dúvidas, sempre procure o supervisor.<br>
+2º Se atentar ao CRONOGRAMA passado pela Gerência.<br>
+3º Mais cuidado na hora de usar o PONTO ELETRÔNICO.
+</p>
+
+<h3>Equipe errou?</h3>
+<p>
+<b>TRATATIVA será criada.</b><br>
+O supervisor responsável deve aplicar PUNIÇÃO conforme o GRAU DE REINCIDÊNCIA do indicador.
+</p>
+
+<h3>🚨 PONTO DE ATENÇÃO</h3>
+<p>Em todas as oportunidades de contato ou reciclagem das equipes, falar sobre a importância de: <br>
+1 - Qualidade das imagens; <br>
+2 - Campo de observação preenchido; <br>
+3 - Materiais utilizados e quantidades; <br>
+4 - Sincronização sempre que possível.
+</p>
+
+<h2>Improdutivas Comerciais</h2>
+
+<h3>Orientação sobre as Improdutivas Comerciais:</h3>
+
+<p>A equipe não pode marcar uma nota como IMPRODUTIVA, sem antes comunicar com o SUPERVISOR.</p>
+
+<p><b>Caso 1 – Improdutiva Comercial aderente</b></p>
+<ul>
+    <li>Ocorrência nº 1025-01-2026</li>
+  <li>Equipe inicia o serviço. Porém, acontece um dos casos:
+    Nada pronto no local, Endereço não encontrado, Atendido por outra equipe, Cliente não permitiu, Pendência nas instalações do cliente.
+  </li>
+<li>Ação: Equipe entra em contato com o SUPERVISOR, toma as previdências corretas, NÃO baixa a nota como IMPRODUTIVA.</li>
+  <li>Resultado: Ocorrência ADERENTE (correto)</li>
+</ul>
+
+<p><b>Caso 2 – Improdutiva Comercial inaderente</b></p>
+<ul>
+    <li>Ocorrência nº 1025-01-2026</li>
+  <li>Equipe inicia o serviço. Porém, acontece um dos casos:
+    Nada pronto no local, Endereço não encontrado, Atendido por outra equipe, Cliente não permitiu, Pendência nas instalações do cliente.
+  </li>
+<li>Ação: Equipe NÃO entra em contato com o SUPERVISOR, baixa a nota como IMPRODUTIVA.</li>
+  <li>Resultado: Ocorrência INADERENTE (incorreto)</li>
+</ul>
+
+<p><b>EXCEÇÃO - EQUIPE PESADA NÃO PREPAROU O LOCAL </b> <br>
+    Se a equipe leve não puder executar o serviço por falta de preparação do local, a nota pode ser lançada como improdutiva, com comunicação ao supervisor.
+</p>
+
+<h3>Qual a orientação à equipe?</h3>
+<p>
+1º Em caso de dúvidas, sempre procure o supervisor.<br>
+2º Não baixar a nota como improdutiva sem antes comunicar com o SUPERVISOR.<br>
+</p>
+
+<h3>Equipe errou?</h3>
+<p>
+<b>TRATATIVA será criada.</b><br>
+O supervisor responsável deve aplicar PUNIÇÃO conforme o GRAU DE REINCIDÊNCIA do indicador.
+</p>
+
+<h3>🚨 PONTO DE ATENÇÃO</h3>
+<p>Em todas as oportunidades de contato ou reciclagem das equipes, falar sobre a importância de: <br>
+1 - Qualidade das imagens; <br>
+2 - Campo de observação preenchido; <br>
+3 - Materiais utilizados e quantidades; <br>
+4 - Sincronização sempre que possível.
+</p>
+
+<h2>Reincidência de Trafo</h2>
+
+<h3>Orientação sobre as Reincidências de transformador:</h3>
+
+<p>Após serviço executado pela equipe em um Transformador, é necessário garantir que não ocorra Reincidência de falha na rede em até <b>90 DIAS</b> (informação disponível no sistema OPER).</p>
+
+<p><b>Caso 1 – Reincidencia de Trafo aderente</b></p>
+<ul>
+    <li>Equipe conserta um transformador com problema</li>
+  <li>Ação: Equipe percorre por toda a rede para garantir que nada está impedindo o devido funcionamento daquele equipamento.</li>
+  <li>Resultado: Tudo funcionando perfeitamente, Reincidencia de Trafo ADERENTE (correto)</li>
+</ul>
+
+<p><b>Caso 2 – Reincidencia de Trafo inaderente</b></p>
+<ul>
+    <li>Equipe conserta um transformador com problema</li>
+  <li>Ação: Equipe não verifica o máximo possível da rede para garantia do serviço executado.</li>
+  <li>Resultado: Erro não percebido, Reincidencia de Trafo INADERENTE (incorreto)</li>
+</ul>
+
+<p><b>EXCEÇÃO - NÃO EXISTE.</b> <br> 
+    A equipe deve garantir o serviço prestado, se atentando a todo e qualquer possível problema.
+</p>
+
+<h3>Qual a orientação à equipe?</h3>
+<p>
+1º Em caso de dúvidas, sempre procure o supervisor.<br>
+2º Percorrer e verificar todos os pontos de possível interrupção no funcionamento da rede.<br>
+</p>
+
+<h3>Equipe errou?</h3>
+<p>
+<b>TRATATIVA será criada.</b><br>
+O supervisor responsável deve aplicar PUNIÇÃO conforme o GRAU DE REINCIDÊNCIA do indicador.
+</p>
+
+<h3>🚨 PONTO DE ATENÇÃO</h3>
+<p>Em todas as oportunidades de contato ou reciclagem das equipes, falar sobre a importância de: <br>
+1 - Qualidade das imagens; <br>
+2 - Campo de observação preenchido; <br>
+3 - Materiais utilizados e quantidades; <br>
+4 - Sincronização sempre que possível.
+</p>
+
+<h2>Aderência de Corte</h2>
+
+<h3>Orientação sobre a Aderência de corte:</h3>
+
+<p>A equipe deve seguir a orientação cadastrada no sistema OPER, 
+    e executar o corte no local correto.</p>
+
+<p><b>Caso 1 – Corte aderente</b></p>
+<ul>
+  <li>Ocorrência nº 1025-01-2026</li>
+  <li>Sistema OPER sugere corte no MEDIDOR</b></li>
+  <li>Ação: equipe executa o corte no MEDIDOR</b></li>
+  <li>Resultado: Corte ADERENTE (correto)</li>
+</ul>
+
+<p><b>Caso 2 – Corte inaderente</b></p>
+<ul>
+  <li>Ocorrência nº 1025-01-2026</li>
+  <li>Sistema OPER sugere corte no POSTE</b></li>
+  <li>Ação: equipe executa o corte no MEDIDOR</b></li>
+  <li>Resultado: Corte INADERENTE (incorreto)</li>
+</ul>
+
+<p><b>Caso 3 – Corte inaderente</b></p>
+<ul>
+  <li>Ocorrência nº 1025-01-2026</li>
+  <li>Sistema OPER sugere corte no MEDIDOR</b></li>
+  <li>Ação: equipe executa o corte no POSTE</b></li>
+  <li>Resultado: Corte INADERENTE (incorreto)</li>
+</ul>
+
+<p><b>EXCEÇÃO - EQUIPE NÃO CONSEGUE ACESSAR O MEDIDOR.</b> <br> 
+    <p>Se no caso em questão, o medidor fica dentro das dependências do cliente, impedindo que a equipe acesse-o para executar o corte legalmente, ela pode cortar no poste.</p>
+
+    <h3>Qual a orientação à equipe?</h3>
+<p>
+1º Em caso de dúvidas, sempre procure o supervisor.<br>
+2º Se atentar ao local de corte sugerido no sistema OPER.<br>
+3º Comunicar o SUPERVISOR em casos de exceção, e evidenciar o que for possível.
+</p>
+
+<h3>Equipe errou?</h3>
+<p>
+<b>TRATATIVA será criada.</b><br>
+O supervisor responsável deve aplicar PUNIÇÃO conforme o GRAU DE REINCIDÊNCIA do indicador.
+</p>
+
+<h3>🚨 PONTO DE ATENÇÃO</h3>
+<p>Em todas as oportunidades de contato ou reciclagem das equipes, falar sobre a importância de: <br>
+1 - Qualidade das imagens; <br>
+2 - Campo de observação preenchido; <br>
+3 - Materiais utilizados e quantidades; <br>
+4 - Sincronização sempre que possível.
+</p>
+
+<h2>Ocorrência 24h</h2>
+
+<h3>Orientação sobre as Ocorrências 24h:</h3>
+
+<p> Diante de uma ocorrência 24h, a equipe é avaliada a partir do início do serviço. 
+    Caso seja identificada demora injustificada na execução, a equipe será penalizada.
+</p>
+
+<p><b>Caso 1 – Ocorrência 24h Aderente</b></p>
+<ul>
+  <li>Ocorrência nº 1025-01-2026</li>
+  <li>Equipe percorreu pela rede e encontrou o problema</b></li>
+  <li>Ação: equipe resolve DENTRO do prazo real, que é estimado de acordo com o problema em questão.</b></li>
+  <li>Resultado: Ocorrência 24h ADERENTE (correto)</li>
+</ul>
+
+<p><b>Caso 2 – Ocorrência 24h Inaderente</b></p>
+<ul>
+  <li>Ocorrência nº 1025-01-2026</li>
+  <li>Equipe percorreu pela rede e encontrou o problema</b></li>
+  <li>Ação: equipe resolve FORA do prazo real (demora), que é estimado de acordo com o problema em questão.</b></li>
+  <li>Resultado: Ocorrência 24h INADERENTE (incorreto)</li>
+</ul>
+
+<p><b>EXCEÇÃO - NÃO EXISTE.</b> <br> 
+    A equipe DEVE resolver o problema em um período de tempo aceitável de acordo com o problema encontrado, sem demora injustificada.
+</p>
+
+  <h3>Qual a orientação à equipe?</h3>
+<p>
+1º Em caso de dúvidas, sempre procure o supervisor.<br>
+2º Percorrer toda a rede atentamente para indentificar o problema.<br>
+3º Resolver rapidamente e garantir o perfeito funcionamento em até 90 DIAS.
+</p>
+
+<h3>Equipe errou?</h3>
+<p>
+<b>TRATATIVA será criada.</b><br>
+O supervisor responsável deve aplicar PUNIÇÃO conforme o GRAU DE REINCIDÊNCIA do indicador.
+</p>
+
+<h3>🚨 PONTO DE ATENÇÃO</h3>
+<p>Em todas as oportunidades de contato ou reciclagem das equipes, falar sobre a importância de: <br>
+1 - Qualidade das imagens; <br>
+2 - Campo de observação preenchido; <br>
+3 - Materiais utilizados e quantidades; <br>
+4 - Sincronização sempre que possível.
+</p>
+
+<h2>Registro de Não Conformidade</h2>
+
+<h3>Orientação sobre os Registros de Não Conformidade:</h3>
+
+<p>A equipe que gera Registros de Não Conformidade pelo mesmo motivo dentro de 7 DIAS,
+    está impedindo o pagamento de um serviço prestado. </p>
+
+    <p><b>Caso 1 – RNC Aderente</b></p>
+<ul>
+  <li>Equipe executou um serviço porém não lançou o serviço dentro do sistema GPM</b></li>
+  <li>Ação: equipe lança o serviço e NÃO comete o mesmo erro novamente.</b></li>
+  <li>Resultado: RNC ADERENTE (correto)</li>
+</ul>
+
+   <p><b>Caso 2 – RNC Inaderente</b></p>
+<ul>
+  <li>Equipe executou um serviço porém não lançou o serviço dentro do sistema GPM</b></li>
+  <li>Ação: equipe não lança o serviço no GPM e continua cometendo esta agravante 3 ou mais vezes dentro de uma semana.</b></li>
+  <li>Resultado: RNC INADERENTE (incorreto)</li>
+</ul>
+
+<p><b>EXCEÇÃO - NÃO EXISTE.</b> <br> 
+    A equipe DEVE seguir os procedimentos necessários para evitar novos Registros de Não Conformidade.
+</p>
+
+<h3>Qual a orientação à equipe?</h3>
+<p>
+1º Em caso de dúvidas, procure o responsável do setor Informação & Performance.<br>
+2º Se atentar para evitar reincidências nesse indicador.<br>
+</p>
+
+<h3>Equipe errou?</h3>
+<p>
+<b>TRATATIVA será criada.</b><br>
+O supervisor responsável deve aplicar PUNIÇÃO conforme o GRAU DE REINCIDÊNCIA do indicador.
+</p>
+
+<h3>🚨 PONTO DE ATENÇÃO</h3>
+<p>Em todas as oportunidades de contato ou reciclagem das equipes, falar sobre a importância de: <br>
+1 - Qualidade das imagens; <br>
+2 - Campo de observação preenchido; <br>
+3 - Materiais utilizados e quantidades; <br>
+4 - Sincronização sempre que possível.
+</p>
+
+<script>
+document.querySelectorAll("h2").forEach(h2 => {
+  const acc = document.createElement("div");
+  acc.className = "accordion";
+
+  const btn = document.createElement("button");
+  btn.className = "accordion-btn";
+  btn.innerHTML = h2.textContent + "<span>▶</span>";
+
+  const content = document.createElement("div");
+  content.className = "accordion-content";
+
+  let next = h2.nextElementSibling;
+  while (next && next.tagName !== "H2") {
+    const temp = next.nextElementSibling;
+    content.appendChild(next);
+    next = temp;
+  }
+
+  h2.replaceWith(acc);
+  acc.appendChild(btn);
+  acc.appendChild(content);
+
+  btn.addEventListener("click", () => {
+    acc.classList.toggle("active");
+    content.style.display = content.style.display === "block" ? "none" : "block";
+  });
+});
+</script>
+ 
+<div class="footer-bar">
+  <a
+    href="https://wa.me/5564996151084"
+    target="_blank"
+    class="whatsapp-btn"
+  >
+    Suporte via WhatsApp
+  </a>
+</div>
+
+</body>
+</html>
